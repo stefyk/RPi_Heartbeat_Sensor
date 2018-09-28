@@ -4,17 +4,13 @@ import time
 import threading
 import spidev
 
-spi_channel = 0
-	   
-#Enable SPI
-spi = spidev.SpiDev(0, channel)
-spi.max_speed_hz = 1000000
+channel = 0
 
 class Heartbeat:
     def __init__(self, channel = 0, bus = 0, device = 0):
         self.channel = channel
         self.BPM = 0
-        self.adc = MCP3008(bus, device)
+        self.adc = spidev.SpiDev(0, channel)
 
     def getBPMLoop(self):
         # init variables
