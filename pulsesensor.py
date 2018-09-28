@@ -10,7 +10,7 @@ spi_channel = 0
 spi = spidev.SpiDev(0, channel)
 spi.max_speed_hz = 1000000
 
-class Heartbeat Sensor:
+class Heartbeat:
     def MCP3208(self, channel = 0, bus = 0, device = 0):
         self.channel = channel
         self.BPM = 0
@@ -105,3 +105,17 @@ class Heartbeat Sensor:
         self.thread.stopped = True
         self.BPM = 0
         return
+
+p = Pulsesensor()
+p.startAsyncBPM()
+
+try:
+    while True:
+        bpm = p.BPM
+        if bpm > 0:
+            print("BPM: %d" % bpm)
+        else:
+            print("No Heartbeat found")
+        time.sleep(1)
+except:
+    p.stopAsyncBPM()
