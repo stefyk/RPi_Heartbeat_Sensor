@@ -114,4 +114,4 @@ try:
             print("No Heartbeat found")
         time.sleep(1)
 except:
-    p.stopAsyncBPM()
+    h.stopAsyncBPM()
