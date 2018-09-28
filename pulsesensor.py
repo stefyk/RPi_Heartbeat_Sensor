@@ -11,7 +11,7 @@ spi = spidev.SpiDev(0, channel)
 spi.max_speed_hz = 1000000
 
 class Heartbeat:
-    def MCP3208(self, channel = 0, bus = 0, device = 0):
+    def __init__(self, channel = 0, bus = 0, device = 0):
         self.channel = channel
         self.BPM = 0
         self.adc = MCP3008(bus, device)
