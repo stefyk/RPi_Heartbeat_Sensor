@@ -1,7 +1,7 @@
 from pulsesensor import Heartbeat
 import time
 
-p = Pulsesensor()
+p = Heartbeat()
 p.startAsyncBPM()
 
 try:
