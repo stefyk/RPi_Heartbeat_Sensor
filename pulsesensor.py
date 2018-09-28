@@ -35,10 +35,10 @@ class Heartbeat:
 	    data = ((data << 1) + adc_channel) << 5
 	    data = [data, 0b00000000]
 	    #Performs the SPI transaction and assigns the data to "reply"
-	    Signal = spi.xfer2(data)
+	    Signal = spi.xfer2(data*4)
         
             while not self.thread.stopped:
-            	Signal = spi.xfer2(data)
+            	Signal = spi.xfer2(data*4)
             	currentTime = int(time.time()*1000)
             
             	sampleCounter += currentTime - lastTime
