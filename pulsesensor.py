@@ -28,8 +28,17 @@ class Heartbeat:
         Pulse = False           # "True" when User's live heartbeat is detected. "False" when not a "live beat". 
         lastTime = int(time.time()*1000)
         
+    def read_adc(adc_channel, Vref = 3.3):
+	    adc_channel = 0
+			
+	    data = 0b11
+	    data = ((data << 1) + adc_channel) << 5
+	    data = [data, 0b00000000]
+	    #Performs the SPI transaction and assigns the data to "reply"
+	    Signal = spi.xfer2(data)
+        
         while not self.thread.stopped:
-            Signal = self.adc.read(self.channel)
+            Signal = spi.xfer2(data)
             currentTime = int(time.time()*1000)
             
             sampleCounter += currentTime - lastTime
