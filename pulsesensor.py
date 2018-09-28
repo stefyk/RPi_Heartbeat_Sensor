@@ -98,18 +98,18 @@ class Heartbeat:
             	time.sleep(0.005)
             
         
-    	# Start getBPMLoop routine which saves the BPM in its variable
-    	def startAsyncBPM(self):
-        	self.thread = threading.Thread(target=self.getBPMLoop)
-        	self.thread.stopped = False
-        	self.thread.start()
-        	return
+    # Start getBPMLoop routine which saves the BPM in its variable
+    def startAsyncBPM(self):
+        self.thread = threading.Thread(target=self.getBPMLoop)
+        self.thread.stopped = False
+        self.thread.start()
+        return
         
-   	# Stop the routine
-    	def stopAsyncBPM(self):
-        	self.thread.stopped = True
-		self.BPM = 0
-        	return
+   # Stop the routine
+    def stopAsyncBPM(self):
+        self.thread.stopped = True
+	self.BPM = 0
+        return
 
 h = Heartbeat()
 h.startAsyncBPM()
