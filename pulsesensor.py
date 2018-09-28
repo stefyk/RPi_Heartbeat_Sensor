@@ -110,17 +110,3 @@ class Heartbeat:
         self.thread.stopped = True
 	self.BPM = 0
         return
-
-h = Heartbeat()
-h.startAsyncBPM()
-
-try:
-    while True:
-        bpm = p.BPM
-        if bpm > 0:
-            print("BPM: %d" % bpm)
-        else:
-            print("No Heartbeat found")
-        time.sleep(1)
-except:
-    h.stopAsyncBPM()
