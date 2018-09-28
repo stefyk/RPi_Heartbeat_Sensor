@@ -102,8 +102,8 @@ class Heartbeat:
         self.BPM = 0
         return
 
-p = Pulsesensor()
-p.startAsyncBPM()
+h = Heartbeat()
+h.startAsyncBPM()
 
 try:
     while True:
