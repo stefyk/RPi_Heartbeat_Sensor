@@ -37,19 +37,19 @@ class Heartbeat:
 	    #Performs the SPI transaction and assigns the data to "reply"
 	    Signal = spi.xfer2(data*4)
         
-            while not self.thread.stopped:
-            	Signal = spi.xfer2(data*4)
-            	currentTime = int(time.time()*1000)
+	while not self.thread.stopped:
+            Signal = spi.xfer2(data*4)
+            currentTime = int(time.time()*1000)
             
-            	sampleCounter += currentTime - lastTime
-            	lastTime = currentTime
+            sampleCounter += currentTime - lastTime
+            lastTime = currentTime
             
-            	N = sampleCounter - lastBeatTime
+            N = sampleCounter - lastBeatTime
 
-            	# find the peak and trough of the pulse wave
-            	if Signal < thresh and N > (IBI/5.0)*3:     # avoid dichrotic noise by waiting 3/5 of last IBI
-                	if Signal < T:                          # T is the trough
-                    		T = Signal                          # keep track of lowest point in pulse wave 
+            # find the peak and trough of the pulse wave
+            if Signal < thresh and N > (IBI/5.0)*3:     # avoid dichrotic noise by waiting 3/5 of last IBI
+                if Signal < T:                          # T is the trough
+                	T = Signal                          # keep track of lowest point in pulse wave 
 
             	if Signal > thresh and Signal > P:
                 	P = Signal
