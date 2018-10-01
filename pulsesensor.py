@@ -36,8 +36,8 @@ class Heartbeat:
 	    data = [data, 0b00000000]
 	    #Performs the SPI transaction and assigns the data to "reply"
 	    Signal = spi.xfer2(data*4)
-        
-    while not thread.stopped:
+	
+    while not self.thread.stopped:
             Signal = spi.xfer2(data*4)
             currentTime = int(time.time()*1000)
             
