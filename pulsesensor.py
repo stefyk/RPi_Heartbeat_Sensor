@@ -2,7 +2,8 @@
 
 import time
 import threading
-import spidev
+from MCP3208 import MCP3208
+#import spidev
 
 channel = 0
 
@@ -10,7 +11,8 @@ class Heartbeat:
     def __init__(self, channel = 0, bus = 0, device = 0):
         self.channel = channel
         self.BPM = 0
-        self.adc = spidev.SpiDev(0, channel)
+        #self.adc = spidev.SpiDev(0, channel)
+	self.adc = MCP3008(bus, device)
 
     def getBPMLoop(self):
         # init variables
@@ -28,17 +30,17 @@ class Heartbeat:
         Pulse = False           # "True" when User's live heartbeat is detected. "False" when not a "live beat". 
         lastTime = int(time.time()*1000)
         
-    def read_adc(adc_channel, Vref = 3.3):
-	    adc_channel = 0
+    #def read_adc(adc_channel, Vref = 3.3):
+	    #adc_channel = 0
 			
-	    data = 0b11
-	    data = ((data << 1) + adc_channel) << 5
-	    data = [data, 0b00000000]
+	    #data = 0b11
+	    #data = ((data << 1) + adc_channel) << 5
+	    #data = [data, 0b00000000]
 	    #Performs the SPI transaction and assigns the data to "reply"
-	    Signal = spi.xfer2(data*4)
+	    #Signal = spi.xfer2(data*4)
         
             while not self.thread.stopped:
-            	Signal = spi.xfer2(data*4)
+            	Signal = self.adc.read(self.channel) #spi.xfer2(data*4)
             	currentTime = int(time.time()*1000)
             
             	sampleCounter += currentTime - lastTime
